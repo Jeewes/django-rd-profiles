@@ -19,6 +19,12 @@ setup(
     url='https://www.example.com/',
     author='Jesse Laukkanen',
     author_email='jesse.m.laukkanen@gmail.com',
+    install_requires=[
+        'Django>=1.8',
+        'pytest',
+        'factory-boy>=2.6',
+        'easy-thumbnails>=2',
+    ],
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
