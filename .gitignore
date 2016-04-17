@@ -1,3 +1,4 @@
+*.pyc
 build/
 dist/
 django_rd_profiles.egg-info/
