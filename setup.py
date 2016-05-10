@@ -24,6 +24,7 @@ setup(
         'pytest',
         'factory-boy>=2.6',
         'easy-thumbnails>=2',
+        'djangorestframework>=3'
     ],
     classifiers=[
         'Environment :: Web Environment',

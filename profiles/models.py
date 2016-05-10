@@ -7,6 +7,8 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from rest_framework import serializers
+
 from easy_thumbnails.files import get_thumbnailer
 
 
@@ -31,3 +33,10 @@ class User(AbstractUser):
 
 # Change blank setting inherited from parent class
 User._meta.get_field('email').blank = False
+
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'email')
+
