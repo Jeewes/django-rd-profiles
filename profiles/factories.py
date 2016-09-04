@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
+import factory
+from django.utils.text import slugify
 from factory.django import DjangoModelFactory
-from faker import Factory
 
 from . import models
-
-
-faker = Factory.create()
 
 
 class UserFactory(DjangoModelFactory):
@@ -30,10 +28,14 @@ class UserFactory(DjangoModelFactory):
 
 
 class RandomUserFactory(UserFactory):
-    first_name = faker.first_name()
-    last_name = faker.last_name()
-    email = "%s.%s@example.com" % (first_name, last_name)
-
+    first_name = factory.Faker("first_name")
+    last_name = factory.Faker("last_name")
+    email = factory.LazyAttribute(
+        lambda user: ("%s.%s@example.com" % (user.first_name, user.last_name)).lower()
+    )
+    username = factory.LazyAttribute(
+        lambda user: slugify("%s%s" % (user.first_name, user.last_name))
+    )
 
 class AdminFactory(UserFactory):
     is_superuser = True
